@@ -91,7 +91,7 @@
       errorBox.style.display = 'none';
 
       try {
-        const response = await fetch('https://bkwzgbgwghe5krr2afw7x4khei0dweii.lambda-url.us-east-1.on.aws/', {
+        const response = await fetch('https://bx2z57pll0.execute-api.us-east-1.amazonaws.com/prod/document', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ code })
