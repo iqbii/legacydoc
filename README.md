@@ -8,13 +8,12 @@ AI-powered code documentation tool. Paste any messy, undocumented code and get c
 ## What it does
 - Paste any code (Python, JavaScript, etc.)
 - Get instant professional documentation
-- Powered by Claude AI
+- Powered by AI
 
 ## Tech Stack
 - AWS Lambda
 - GCP Cloud Run
 - GitHub Pages
-- Claude AI
 
 ## Built by
 Kareem Rufai — building in public
