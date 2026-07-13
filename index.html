@@ -62,7 +62,7 @@
 
   <div class="container">
     <h1>Document your code with <span>AI</span></h1>
-    <p class="subtitle">Paste any messy, undocumented code and get clean professional docs in seconds.</p>
+    <p class="subtitle">Upload your code files and get clean, professional docs in seconds.</p>
 
     <!-- GitHub connect card -->
     <div class="github-card" id="github-connect-card">
@@ -99,8 +99,8 @@
 
       <div id="or-divider" class="or-divider" style="display:none">or paste code manually</div>
 
-      <label>PASTE YOUR CODE</label>
-      <textarea id="codeInput" placeholder="Paste your code here..."></textarea>
+      <label>UPLOAD YOUR CODE</label>
+      <textarea id="codeInput" placeholder="Select or drop your files here..."></textarea>
       <button id="generateBtn" onclick="generate()">Generate Documentation</button>
       <div class="status" id="status">Generating documentation...</div>
     </div>
@@ -115,10 +115,18 @@
       </div>
     </div>
 
-    <div class="footer">Built with Claude AI · Deployed on AWS Lambda</div>
+    <div class="footer">Built with Claude AI · Deployed on AWS Lambda · We never store your code or personal data</div>
   </div>
 
   <script>
+    async function handleFileUpload(event) {
+      const files = Array.from(event.target.files);
+      if (!files.length) return;
+      document.getElementById('fileNames').textContent = files.map(f => f.name).join(', ');
+      const texts = await Promise.all(files.map(f => f.text()));
+      document.getElementById('codeInput').value = files.map((f, i) => `// === ${f.name} ===\n${texts[i]}`).join('\n\n');
+    }
+
     const OAUTH_URL = "https://jpipzv2qc5s6mijssqhqop5rla0emchn.lambda-url.us-east-2.on.aws";
 
     async function checkGitHubConnection() {
